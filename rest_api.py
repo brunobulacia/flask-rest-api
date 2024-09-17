@@ -12,6 +12,8 @@ def get_tree_nodes():
 
 @app.route('/api/insert/<int:data>', methods=['POST'])
 def insert_node(data):
+    if tree.search(data):
+        return {'message': f'Nodo {data} ya existe en el árbol'}, 400
     tree.insert(data)
     return {'message': f'Nodo {data} insertado con éxito'}, 200
 
